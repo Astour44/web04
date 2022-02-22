@@ -5,7 +5,13 @@ if (!isset($_SESSION['admin'])) {
     exit();
 }
 $user = $Admin->find(['acc' => $_SESSION['admin']]);
+// echo "<pre>";
+// print_r($user['pr']);
+// echo "</pre>";
 $right = unserialize($user['pr']);
+// echo "<pre>";
+// print_r($right);
+// echo "</pre>";
 
 
 ?>
@@ -35,6 +41,7 @@ $right = unserialize($user['pr']);
             <div style="min-height:400px;">
                 <a href="?do=admin">管理權限設置</a>
                 <?= (in_array(1, $right)) ? "<a href='?do=th'>商品分類與管理</a>" : ""; ?>
+                <!-- 從$right找到1 -->
                 <?= (in_array(2, $right)) ? "<a href='?do=order'>訂單管理</a>" : ""; ?>
                 <?= (in_array(3, $right)) ? "<a href='?do=mem'>會員管理</a>" : ""; ?>
                 <?= (in_array(4, $right)) ? "<a href='?do=bot'>頁尾版權管理</a>" : ""; ?>
