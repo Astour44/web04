@@ -22,7 +22,8 @@ body
 	display:inline-block;
 	width:20%;
 	padding:2%;
-	min-height:550px;
+	height:550px;
+	overflow:auto;
 	vertical-align:top;
 	border:#000 1px solid;
 }
@@ -44,8 +45,9 @@ body
 	display:inline-block;
 	width:65%;
 	padding:2%;
-	min-height:550px;
+	height:550px;
 	border:#000 1px solid;
+	overflow:auto;
 }
 #bottom
 {
@@ -65,7 +67,7 @@ body
 }
 .all td
 {
-	min-width:100px;
+	min-width:50px;
 	padding:10px;
 }
 .tt
@@ -101,10 +103,13 @@ input[type=text],input[type=password]
 .s
 {
 	display:none;
+	
 }
+
 div.ww:hover > div.s
 {
 	display:block;
+	
 }
 .sb button
 {

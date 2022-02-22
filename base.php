@@ -44,14 +44,14 @@ class DB{
         $sql="SELECT * FROM $this->table ";
 
         if(is_array($id)){
-            foreach($arg[0] as $key => $val){
+            foreach($id as $key => $val){
                 $tmp[]="`$key`='$val'";
             }
             $sql .= " WHERE " . implode(" && ",$tmp);
         }else{
             $sql .= " WHERE `id`='$id'";
         }
-
+       // echo $sql;
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
     function save($array){
@@ -68,7 +68,7 @@ class DB{
             $sql .= " VALUES('".join("','",$array)."')";
 
         }
-
+        //echo $sql;
         return $this->pdo->exec($sql);
 
     }
@@ -76,7 +76,7 @@ class DB{
         $sql="DELETE FROM $this->table ";
 
         if(is_array($id)){
-            foreach($arg[0] as $key => $val){
+            foreach($id as $key => $val){
                 $tmp[]="`$key`='$val'";
             }
             $sql .= " WHERE " . implode(" && ",$tmp);
@@ -87,10 +87,10 @@ class DB{
         return $this->pdo->exec($sql);
     }
     function q($sql){
-        return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
     function math($math,$col,...$arg){
-        $sql="SELECT $math(`$col`) FROM $this->table ";
+        $sql="SELECT $math($col) FROM $this->table ";
         switch(count($arg)){
             case 1:
                 if(is_array($arg[0])){
@@ -112,7 +112,7 @@ class DB{
             break;
         
         }
-
+        //echo $sql;
         return $this->pdo->query($sql)->fetchColumn();
     }
 
@@ -128,4 +128,15 @@ function dd($array){
     echo "</pre>";
 }
 
+$Mem=new DB("member");
+$Admin=new DB('admin');
+$Bot=new DB('bottom');
+$Ord=new DB('ord');
+$Type=new DB('type');
+$Goods=new DB('goods');
+
+/* $admin['acc']='admin';
+$admin['pw']='1234';
+$admin['pr']=serialize([1,2,3,4,5]);
+$Admin->save($admin); */
 ?>
