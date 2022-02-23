@@ -54,6 +54,9 @@ $right = unserialize($user['pr']);
         <div id="right">
             <?php
             $do = $_GET["do"] ?? 'admin';
+            //??意思是如果變數存在且不為null就會返回否則返回第二個值
+            //如果$_GET["do"]存在且不是null的話就會返回自身的值
+            //但若不存在會返回'admin'
             $file = 'back/' . $do . ".php";
             if (file_exists($file)) {
                 include $file;
